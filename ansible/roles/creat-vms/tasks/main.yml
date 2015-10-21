@@ -1,0 +1,56 @@
+---
+#- name: install the latest version of virt-install
+#  dnf:
+#    name: "virt-instal"
+#    state: "latest"
+
+- name: install needed tools
+  dnf:
+    name: "{{ item }}"
+    state: "latest"
+  with_items:
+    - "virt-install"
+
+#- name: install needed tools
+#  package:
+#    name: "{[ item ]}"
+#    state: "latest"
+#  with_items:
+#    - "virt-install"
+
+
+- name: remove vm images
+  shell: "rm -f /home/DATA/kvm/images/{{ minionid }}.qcow2"
+
+- name: copy vm images
+  shell: "rsync /home/DATA/iso/Fedora-Cloud-Atomic-22-20150521.x86_64.qcow2 /home/DATA/kvm/images/{{ minionid }}.qcow2"
+
+# create a directory if it doesn't exist
+- name : "create tmp directory"
+  file:
+    path: "/tmp/docker-cluster/{{ minionid }}"
+    state: "directory"
+    mode: "0755"
+
+- name: user-data copy
+  template:
+    src: "../files/{{ item }}.j2"
+    dest: "/tmp/docker-cluster/{{ minionid }}/{{ item }}"
+  with_items:
+    - "meta-data"
+    - "user-data"
+
+- name: "remove old cloud init iso"
+  shell: "rm -f /tmp/docker-cluster/{{ minionid }}/init-config.iso"
+
+- name: "Create cloud init iso"
+  shell: "genisoimage -output /tmp/docker-cluster/{{ minionid }}/init-config.iso -volid cidata -joliet -rock user-data meta-data"
+  args:
+    chdir: "/tmp/docker-cluster/{{ minionid }}"
+
+- name: "create minion vm"
+  shell: "virt-install --import --name {{ minionid }} \
+  --ram {{ vram }} --vcpus {{ vcpus }} \
+  --disk path=/home/DATA/kvm/images/{{ minionid }}.qcow2,format=qcow2,bus=virtio \
+  --disk path=/tmp/docker-cluster/{{ minionid }}/init-config.iso,device=cdrom &"
+#  --network bridge=virbr0"
