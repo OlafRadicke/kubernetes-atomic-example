@@ -1,0 +1,11 @@
+---
+- hosts: virt-host
+  remote_user: root
+  sudo: "yes"
+  vars:
+    minionhostnames: 
+      - "atomic-01"
+      - "atomic-02"
+      - "atomic-03"
+  roles:
+     - control-vms

@@ -12,6 +12,6 @@ genisoimage -output cloud-init-config.iso -volid cidata -joliet -rock user-data 
 
 ## Externe Dokus ##
 
-* [http://www.admin-magazin.de/Das-Heft/2015/03/Workshop-Docker-Container-mit-Kubernetes-managen](Workshop-Docker: Container mit Kubernetes managen)
-* [http://kubernetes.io/v1.0/docs/user-guide/services.html](Kubernetes: services)
-* 
+* [Workshop-Docker: Container mit Kubernetes managen](http://www.admin-magazin.de/Das-Heft/2015/03/Workshop-Docker-Container-mit-Kubernetes-managen)
+* [Kubernetes: services](http://kubernetes.io/v1.0/docs/user-guide/services.html)
+* [cloudinit](https://cloudinit.readthedocs.org/en/latest/)

@@ -1,0 +1,6 @@
+instance-id: {{ minionid }}
+local-hostname: {{ minionhostname }}
+
+runcmd:
+ - echo "after first boot" > /var/firstboot.txt
+ - reboot

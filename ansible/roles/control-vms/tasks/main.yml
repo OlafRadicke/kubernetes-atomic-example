@@ -1,0 +1,5 @@
+- name: "start minion vm"
+  virt:
+    name: "{{ item }}"
+    state: "running"
+  with_items:  minionhostnames

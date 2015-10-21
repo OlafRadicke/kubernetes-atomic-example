@@ -1,0 +1,10 @@
+---
+- hosts: virt-host
+  remote_user: root
+  vars:
+    minionid: "Atomic01"
+    minionhostname: "atomic-01"
+    vcpus: "1"
+    vram: "2048"
+  roles:
+     - creat-vms

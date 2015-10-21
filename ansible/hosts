@@ -1,0 +1,8 @@
+[virt-host]
+localhost
+
+
+[minion-host]
+atomic-01
+atomic-02
+atomic-03
