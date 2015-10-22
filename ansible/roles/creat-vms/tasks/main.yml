@@ -49,8 +49,14 @@
     chdir: "/tmp/docker-cluster/{{ minionid }}"
 
 - name: "create minion vm"
-  shell: "virt-install --import --name {{ minionid }} \
-  --ram {{ vram }} --vcpus {{ vcpus }} \
+  command: "virt-install --import \
+  --name {{ minionid }}  \
+  --ram {{ vram }}  \
+  --vcpus {{ vcpus }} \
   --disk path=/home/DATA/kvm/images/{{ minionid }}.qcow2,format=qcow2,bus=virtio \
-  --disk path=/tmp/docker-cluster/{{ minionid }}/init-config.iso,device=cdrom &"
-#  --network bridge=virbr0"
+  --network bridge:virbr0 \
+  --graphics none  \
+  --force \
+  --disk path=/tmp/docker-cluster/{{ minionid }}/init-config.iso,device=cdrom "
+  async: 40
+  poll: 5
