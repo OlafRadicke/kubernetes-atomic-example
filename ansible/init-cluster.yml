@@ -6,5 +6,7 @@
     minionhostname: "atomic-01"
     vcpus: "1"
     vram: "2048"
+#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
   roles:
      - creat-vms

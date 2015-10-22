@@ -1,7 +1,7 @@
 ---
 #- name: install the latest version of virt-install
 #  dnf:
-#    name: "virt-instal"
+#    name: "virt-install"
 #    state: "latest"
 
 - name: install needed tools
@@ -9,7 +9,7 @@
     name: "{{ item }}"
     state: "latest"
   with_items:
-    - "virt-install"
+    - virt-install
 
 #- name: install needed tools
 #  package:
@@ -23,7 +23,7 @@
   shell: "rm -f /home/DATA/kvm/images/{{ minionid }}.qcow2"
 
 - name: copy vm images
-  shell: "rsync /home/DATA/iso/Fedora-Cloud-Atomic-22-20150521.x86_64.qcow2 /home/DATA/kvm/images/{{ minionid }}.qcow2"
+  shell: "rsync /home/DATA/iso/{{ vmimages }}.qcow2 /home/DATA/kvm/images/{{ minionid }}.qcow2"
 
 # create a directory if it doesn't exist
 - name : "create tmp directory"

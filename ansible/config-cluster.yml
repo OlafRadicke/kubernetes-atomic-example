@@ -3,9 +3,9 @@
   remote_user: root
   sudo: "yes"
   vars:
-    minionhostnames: 
-      - "atomic-01"
-      - "atomic-02"
-      - "atomic-03"
+    minionhostnames:
+      - "Atomic01"
+      - "Atomic02"
+      - "Atomic03"
   roles:
      - control-vms

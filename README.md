@@ -2,13 +2,29 @@
 
 ### Ziel ###
 
-Das Wechselspiel zwischen Docker, Kubernets und Atomic ausprobieren.
+Das Wechselspiel zwischen Ansible, Docker, Kubernets und Atomic ausprobieren.
 
 
-## Cloud-init-Imitge genereieren ##
+## Die Playbooks ##
+
+### Erstellung des Clusters ###
+
 ```
-genisoimage -output cloud-init-config.iso -volid cidata -joliet -rock user-data meta-data
+ansible-playbook -vvvv  -i ./hosts ./init-cluster.ymlansible-playbook -vvvv  -i ./hosts ./init-cluster.ymlansible-playbook -vvvv  -i ./hosts ./init-cluster.yml
 ```
+
+### Verwaltung der des Clusters ###
+```
+ansible-playbook -vvvv  -i ./hosts ./config-cluster.yml
+```
+
+## Login ##
+
+default user: *fedora* (mit Fedora-Images) bzw. *centos* (mit CentOS-Images)
+Passwort: *atomic* (wenn der ssk-key nicht greift)
+
+Zusatz-User: *ansible*
+Kein Passwort
 
 ## Externe Dokus ##
 
