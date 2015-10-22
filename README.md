@@ -31,3 +31,4 @@ Kein Passwort
 * [Workshop-Docker: Container mit Kubernetes managen](http://www.admin-magazin.de/Das-Heft/2015/03/Workshop-Docker-Container-mit-Kubernetes-managen)
 * [Kubernetes: services](http://kubernetes.io/v1.0/docs/user-guide/services.html)
 * [cloudinit](https://cloudinit.readthedocs.org/en/latest/)
+* [atomic quickstart](http://www.projectatomic.io/docs/quickstart/)
