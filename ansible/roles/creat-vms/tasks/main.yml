@@ -1,9 +1,4 @@
 ---
-#- name: install the latest version of virt-install
-#  dnf:
-#    name: "virt-install"
-#    state: "latest"
-
 - name: install needed tools
   dnf:
     name: "{{ item }}"
@@ -11,26 +6,20 @@
   with_items:
     - virt-install
 
-#- name: install needed tools
-#  package:
-#    name: "{[ item ]}"
-#    state: "latest"
-#  with_items:
-#    - "virt-install"
-
-
 - name: remove vm images
-  shell: "rm -f /home/DATA/kvm/images/{{ minionid }}.qcow2"
+  shell: "rm -f {{ imagestorage }}/{{ minionid }}.qcow2"
 
 - name: copy vm images
-  shell: "rsync /home/DATA/iso/{{ vmimages }}.qcow2 /home/DATA/kvm/images/{{ minionid }}.qcow2"
+  shell: "rsync {{ isostorage }}/{{ vmimages }}.qcow2 {{ imagestorage }}/{{ minionid }}.qcow2"
 
-# create a directory if it doesn't exist
 - name : "create tmp directory"
   file:
-    path: "/tmp/docker-cluster/{{ minionid }}"
+    path: "{{ item }}"
     state: "directory"
     mode: "0755"
+  with_items:
+    - "/tmp/docker-cluster/{{ minionid }}"
+    - "{{ cloudinitisos }}/{{ minionid }}/"
 
 - name: user-data copy
   template:
@@ -41,10 +30,10 @@
     - "user-data"
 
 - name: "remove old cloud init iso"
-  shell: "rm -f /tmp/docker-cluster/{{ minionid }}/init-config.iso"
+  shell: "rm -f {{ cloudinitisos }}/{{ minionid }}/init-config.iso"
 
 - name: "Create cloud init iso"
-  shell: "genisoimage -output /tmp/docker-cluster/{{ minionid }}/init-config.iso -volid cidata -joliet -rock user-data meta-data"
+  shell: "genisoimage -output {{ cloudinitisos }}/{{ minionid }}/init-config.iso -volid cidata -joliet -rock user-data meta-data"
   args:
     chdir: "/tmp/docker-cluster/{{ minionid }}"
 
@@ -53,10 +42,10 @@
   --name {{ minionid }}  \
   --ram {{ vram }}  \
   --vcpus {{ vcpus }} \
-  --disk path=/home/DATA/kvm/images/{{ minionid }}.qcow2,format=qcow2,bus=virtio \
+  --disk path={{ imagestorage }}/{{ minionid }}.qcow2,format=qcow2,bus=virtio \
   --network bridge:virbr0 \
   --graphics none  \
   --force \
-  --disk path=/tmp/docker-cluster/{{ minionid }}/init-config.iso,device=cdrom "
+  --disk path={{ cloudinitisos }}/{{ minionid }}/init-config.iso,device=cdrom "
   async: 40
   poll: 5
