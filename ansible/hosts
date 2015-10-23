@@ -3,6 +3,7 @@ localhost
 
 
 [minion-host]
+192.168.122.181
 atomic-01
 atomic-02
 atomic-03

@@ -1,5 +1,5 @@
 - hosts: minion-host
-  remote_user: "ansible"
+  remote_user: "fedora"
   sudo: "yes"
   roles:
      - minion-init
