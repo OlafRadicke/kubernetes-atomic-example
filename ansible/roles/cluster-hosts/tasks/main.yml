@@ -1,0 +1,4 @@
+- name : "update /etc/hosts"
+  file:
+    src: "../files/etc_hosts"
+    dest: "/etc/hosts"

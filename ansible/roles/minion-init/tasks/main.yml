@@ -7,7 +7,7 @@
 - name: start kubernetes cluster
   service:
     name: "{{ item }}"
-    state: "started"
+    state: "restarted"
     enabled: "yes"
   with_items:
     - "etcd"

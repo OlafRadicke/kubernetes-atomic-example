@@ -2,8 +2,8 @@
 - hosts: virt-host
   remote_user: root
   vars:
-    minionid: "Atomic01"
-    minionhostname: "atomic-01"
+    minionid: "Atomic02"
+    minionhostname: "atomic-02"
     vcpus: "1"
     vram: "2048"
     vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
@@ -13,3 +13,19 @@
     imagestorage: "/home/DATA/kvm/images"
   roles:
      - creat-vms
+
+
+- hosts: virt-host
+  remote_user: root
+  vars:
+    minionid: "Atomic03"
+    minionhostname: "atomic-03"
+    vcpus: "1"
+    vram: "2048"
+    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+    #    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
+    cloudinitisos: "/home/DATA/cloud-init"
+    isostorage: "/home/DATA/iso/"
+    imagestorage: "/home/DATA/kvm/images"
+  roles:
+    - creat-vms

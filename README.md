@@ -13,9 +13,15 @@ Das Wechselspiel zwischen Ansible, Docker, Kubernets und Atomic ausprobieren.
 ansible-playbook -vvvv  -i ./hosts ./init-cluster.ymlansible-playbook -vvvv  -i ./hosts ./init-cluster.ymlansible-playbook -vvvv  -i ./hosts ./init-cluster.yml
 ```
 
-### Verwaltung der des Clusters ###
+### Verwaltung der Cluster VMs ###
+(Aus Virtualiesierungssicht)
 ```
 ansible-playbook -vvvv  -i ./hosts ./config-cluster.yml
+```
+
+### Verwaltung des Kubernetes Cluster ###
+```
+ansible-playbook -vvvv  -i ./hosts minion-config.yml
 ```
 
 ## Login ##
