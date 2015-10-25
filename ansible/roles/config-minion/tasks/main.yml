@@ -7,8 +7,11 @@
 
 - name: "Update /etc/kubernetes/kubelet"
   template:
-    src: "../files/etc_kubernetes_kubelet.j2"
-    dest: "/etc/kubernetes/kubelet"
+    src: "../files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "etc_kubernetes_kubelet.j2", dest: "/etc/kubernetes/kubelet" }
+    - { src: "etc_kubernetes_config.j2", dest: "/etc/kubernetes/config" }
   notify:
     - "restart kubernetes minion services"
 
