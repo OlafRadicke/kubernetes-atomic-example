@@ -1,4 +1,5 @@
+---
 - name : "update /etc/hosts"
-  file:
+  copy:
     src: "../files/etc_hosts"
     dest: "/etc/hosts"

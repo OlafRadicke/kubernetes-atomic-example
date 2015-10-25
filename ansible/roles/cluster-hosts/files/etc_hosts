@@ -1,5 +1,6 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
 192.168.122.181  atomic-01 atomic-01.kubernetes-01
 192.168.122.158  atomic-02 atomic-02.kubernetes-01
 192.168.122.223  atomic-03 atomic-03.kubernetes-01

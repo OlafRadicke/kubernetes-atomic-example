@@ -1,9 +1,0 @@
-- hosts: minion-host
-  remote_user: "fedora"
-  sudo: "yes"
-  vars:
-    kubernetesmaster: "atomic-01 atomic-01.kubernetes-01"
-  roles:
-     - minion-init
-     - cluster-hosts
-     - kubernetes

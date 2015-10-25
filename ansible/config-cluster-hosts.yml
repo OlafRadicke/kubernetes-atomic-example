@@ -1,0 +1,20 @@
+---
+- hosts: "master-host"
+  remote_user: "fedora"
+  sudo: "yes"
+  vars:
+    kubernetesmaster: "atomic-01.kubernetes-01"
+    minionips: "192.168.122.158,192.168.122.223"
+  roles:
+    - "cluster-hosts"
+    - "config-master"
+
+- hosts: "minion-host"
+  remote_user: "fedora"
+  sudo: "yes"
+  vars:
+    kubernetesmaster: "atomic-01.kubernetes-01"
+    minionips: "192.168.122.158,192.168.122.223"
+  roles:
+    - "cluster-hosts"
+    - "config-minion"

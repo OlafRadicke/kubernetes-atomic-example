@@ -1,0 +1,39 @@
+---
+- name: "minion upgrade"
+  command: "rpm-ostree upgrade"
+
+#- name: "minion reboot"
+#  command: "rpm-ostree upgrade && exit"
+
+- name: "Update kubernetes configs"
+  template:
+    src: "../files/{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "etc_kubernetes_apiserver.j2", dest: "/etc/kubernetes/apiserver" }
+    - { src: "etc_kubernetes_config.j2", dest: "/etc/kubernetes/config" }
+    - { src: "etc_kubernetes_controller-manager.j2", dest: "/etc/kubernetes/controller-manager" }
+    - { src: "etc_etcd_etcd.conf.j2", dest: "/etc/etcd/etcd.conf" }
+  notify:
+    - "restart kubernetes master services"
+
+- name: "start kubernetes master services"
+  service:
+    name: "{{ item }}"
+    state: "restarted"
+    enabled: "yes"
+  with_items:
+    - "etcd"
+    - "kube-apiserver"
+    - "kube-controller-manager"
+    - "kube-scheduler"
+
+- name: "stop kubernetes minion services"
+  service:
+    name: "{{ item }}"
+    state: "stopped"
+    enabled: "no"
+  with_items:
+    - "kube-proxy"
+    - "kubelet"
+    - "docker"

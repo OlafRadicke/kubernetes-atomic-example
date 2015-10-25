@@ -16,12 +16,12 @@ ansible-playbook -vvvv  -i ./hosts ./init-cluster.ymlansible-playbook -vvvv  -i 
 ### Verwaltung der Cluster VMs ###
 (Aus Virtualiesierungssicht)
 ```
-ansible-playbook -vvvv  -i ./hosts ./config-cluster.yml
+ansible-playbook -vvvv  -i ./hosts ./config-cluster-kvm
 ```
 
 ### Verwaltung des Kubernetes Cluster ###
 ```
-ansible-playbook -vvvv  -i ./hosts minion-config.yml
+ansible-playbook -vvvv  -i ./config-cluster-hosts
 ```
 
 ## Login ##
