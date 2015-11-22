@@ -1,0 +1,18 @@
+---
+
+ name : "create tmp directory"
+  file:
+    path: "/srv/exports/docker"
+    state: "directory"
+    mode: "0755"
+
+- name: "Update /etc/exports"
+  template:
+    src: "../files/exports"
+    dest: "/etc/exports"
+
+- name: "restart nfs"
+  service:
+    name: "nfs"
+    state: "reloaded"
+    enabled: "yes"

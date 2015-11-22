@@ -6,7 +6,6 @@
 #  command: "rpm-ostree upgrade && exit"
 
 
-
 - name: "Update /etc/kubernetes/kubelet"
   template:
     src: "../files/{{ item.src }}"

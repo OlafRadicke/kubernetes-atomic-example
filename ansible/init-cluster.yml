@@ -20,12 +20,12 @@
 - hosts: virt-host
   remote_user: root
   vars:
-    minionid: "Minion02"
-    minionhostname: "minion-02"
+    minionid: "Minion01"
+    minionhostname: "minion-01"
     vcpus: "1"
     vram: "2048"
-    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
-#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+#    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
+    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
 #    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
     cloudinitisos: "/home/DATA/cloud-init"
     isostorage: "/home/DATA/iso/"
@@ -38,12 +38,12 @@
 - hosts: virt-host
   remote_user: root
   vars:
-    minionid: "Minion03"
-    minionhostname: "minion-03"
+    minionid: "Minion02"
+    minionhostname: "minion-02"
     vcpus: "1"
     vram: "2048"
-    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
-#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+#    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
+    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
     #    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
     cloudinitisos: "/home/DATA/cloud-init"
     isostorage: "/home/DATA/iso/"

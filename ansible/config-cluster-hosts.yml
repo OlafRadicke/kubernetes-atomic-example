@@ -1,10 +1,17 @@
 ---
+- hosts: "nfs-server"
+  remote_user: "fedora"
+  sudo: "yes"
+  roles:
+    - "nfs-server-config"
+
+
 - hosts: "master-host"
   remote_user: "fedora"
   sudo: "yes"
   vars:
-    kubernetesmaster: "atomic-01.kubernetes-01"
-    minionips: "192.168.122.158,192.168.122.223"
+    kubernetesmaster: "minon-01.kubernetes-01"
+    minionips: "192.168.122.115,192.168.122.23"
   roles:
     - "cluster-hosts"
     - "config-master"
@@ -13,8 +20,8 @@
   remote_user: "fedora"
   sudo: "yes"
   vars:
-    kubernetesmaster: "atomic-01.kubernetes-01"
-    minionips: "192.168.122.158,192.168.122.223"
+    kubernetesmaster: "minion-01.kubernetes-01"
+    minionips: "192.168.122.115,192.168.122.23"
   roles:
     - "cluster-hosts"
     - "config-minion"
