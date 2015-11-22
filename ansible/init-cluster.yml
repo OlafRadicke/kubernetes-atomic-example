@@ -2,11 +2,12 @@
 - hosts: virt-host
   remote_user: root
   vars:
-    minionid: "Atomic02"
-    minionhostname: "atomic-02"
+    minionid: "nfsserver"
+    minionhostname: "nfs-server"
     vcpus: "1"
     vram: "2048"
-    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
+#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
 #    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
     cloudinitisos: "/home/DATA/cloud-init"
     isostorage: "/home/DATA/iso/"
@@ -19,11 +20,30 @@
 - hosts: virt-host
   remote_user: root
   vars:
-    minionid: "Atomic03"
-    minionhostname: "atomic-03"
+    minionid: "Minion02"
+    minionhostname: "minion-02"
     vcpus: "1"
     vram: "2048"
-    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
+#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
+#    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
+    cloudinitisos: "/home/DATA/cloud-init"
+    isostorage: "/home/DATA/iso/"
+    imagestorage: "/home/DATA/kvm/images"
+  roles:
+     - creat-cloud-init-iso
+     - creat-vms
+
+
+- hosts: virt-host
+  remote_user: root
+  vars:
+    minionid: "Minion03"
+    minionhostname: "minion-03"
+    vcpus: "1"
+    vram: "2048"
+    vmimages: "Fedora-Cloud-Base-23-20151030.x86_64"
+#    vmimages: "Fedora-Cloud-Atomic-22-20150521.x86_64"
     #    vmimages: "CentOS-Atomic-Host-7-GenericCloud"
     cloudinitisos: "/home/DATA/cloud-init"
     isostorage: "/home/DATA/iso/"
