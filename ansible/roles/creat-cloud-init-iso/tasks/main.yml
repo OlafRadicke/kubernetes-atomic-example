@@ -1,0 +1,33 @@
+---
+- name: install needed tools
+  dnf:
+    name: "{{ item }}"
+    state: "latest"
+  with_items:
+    - genisoimage
+
+- name : "create tmp directory"
+  file:
+    path: "{{ item }}"
+    state: "directory"
+    mode: "0755"
+  with_items:
+    - "/tmp/docker-cluster/{{ minionid }}"
+    - "{{ cloudinitisos }}/{{ minionid }}/"
+
+- name: user-data copy
+  template:
+    src: "../files/{{ item }}.j2"
+    dest: "/tmp/docker-cluster/{{ minionid }}/{{ item }}"
+  with_items:
+    - "meta-data"
+    - "user-data"
+
+- name: "remove old cloud init iso"
+  shell: "rm -f {{ cloudinitisos }}/{{ minionid }}/init-config.iso"
+
+- name: "Create cloud init iso"
+  shell: "genisoimage -output {{ cloudinitisos }}/{{ minionid }}/init-config.iso -volid cidata -joliet -rock user-data meta-data"
+  args:
+    chdir: "/tmp/docker-cluster/{{ minionid }}"
+

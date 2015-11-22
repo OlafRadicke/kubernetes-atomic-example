@@ -1,0 +1,13 @@
+---
+- hosts: 127.0.0.1
+  remote_user: root
+  vars:
+    minionid: "cloudtest"
+    minionhostname: "cloudtest"
+    cloudinitisos: "/home/DATA/cloud-init"
+    isostorage: "/home/DATA/iso/"
+  roles:
+     - creat-cloud-init-iso
+
+
+

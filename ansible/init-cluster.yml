@@ -12,6 +12,7 @@
     isostorage: "/home/DATA/iso/"
     imagestorage: "/home/DATA/kvm/images"
   roles:
+     - creat-cloud-init-iso
      - creat-vms
 
 
@@ -28,4 +29,5 @@
     isostorage: "/home/DATA/iso/"
     imagestorage: "/home/DATA/kvm/images"
   roles:
+    - creat-cloud-init-iso
     - creat-vms
